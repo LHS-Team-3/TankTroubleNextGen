@@ -1,29 +1,26 @@
 package com.lhs.game;
 
-import java.awt.*;
-
-public class Tank extends Actor {
+public class Projectile extends Actor {
 	
-	public Color color;
-	public String name;
-	public Bullet shot;
 	public double x;
 	public double y;
-	public int direction; //0-359, describes direction in terms of degrees, straight up is 0, straight right is 90
+	public String name;
+	public Bullet type;
+	public int direction;
 	
-	//TODO: make actual tank class (must get input for movement)
-	
-	public Tank(Color color, String name) {
+	public Projectile(String name, double x, double y) {
 		
-		this.color = color;
 		this.name = name;
-		this.direction = 0;
-		this.x = 0;
-		this.y = 0;
+		this.x = x;
+		this.y = y;
 		
 	}
 	
-	public boolean move(double m) {
+	public void move() {
+		
+		direction = rebound();
+		
+		double m = type.speed;
 		
 		double dX = 0;
 		double dY = 0;
@@ -40,20 +37,21 @@ public class Tank extends Actor {
 		else if (direction<270)dY = Math.cos(Math.toRadians(180-direction));
 		else dY = Math.cos(Math.toRadians(270-direction));
 		
-		if (canMove(m)) { x += m*dX; y += m*dY; return true; }
-		return false;
+		x += m*dX; y += m*dY;
 		
 	}
 	
-	public boolean canMove(double m) {
+	public int rebound() {
 		
-		return true; //TODO: make collision detector
+		//TODO: if colliding, find surface and get angle of rebound
+		
+		return direction;
 		
 	}
 	
 	public void tick() {
 		
-		//TODO: if corresponding keys are pressed, move
+		move();
 		
 	}
 	
