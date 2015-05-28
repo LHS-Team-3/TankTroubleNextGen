@@ -28,7 +28,7 @@ public class Wall {
 	
 	public boolean intersects(double x, double y, int w, int h) {
 		
-		return bounds.intersects(x, y, w, h);
+		return bounds.intersects(x, y, w, h); //arbitrary comment
 		
 	}
 	
