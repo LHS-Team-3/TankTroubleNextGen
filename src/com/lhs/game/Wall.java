@@ -6,9 +6,9 @@ public class Wall {
 	
 	public Rectangle2D bounds;
 	
-	public Wall(int x, int y, int w, int h) {
+	public Wall(int x, int y, double w, double h) {
 		
-		bounds = new Rectangle2D.Double((double)x,(double)y,(double)w,(double)h);
+		bounds = new Rectangle2D.Double((double)x,(double)y,w,h);
 		
 	}
 	
