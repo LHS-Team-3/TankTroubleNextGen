@@ -1,5 +1,6 @@
 package com.lhs.game;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Arrays;
  
@@ -8,10 +9,12 @@ public class MazeGenerator {
     private final int x;
     private final int y;
     private final int[][] maze;
+    public ArrayList<Wall> walls;
  
     public MazeGenerator(int x, int y) {
         this.x = x;
         this.y = y;
+        this.walls = new ArrayList<Wall>();
         maze = new int[this.x][this.y];
         generateMaze(0, 0);
     }
@@ -22,12 +25,13 @@ public class MazeGenerator {
             for (int j = 0; j < x; j++) {
                 System.out.print((maze[j][i] & 1) == 0 ? "+---" : "+   ");
                 //PSEUDO if (maze[j][i] & 1 == 0) add a wall at the top
+                if ((maze[j][i] & 1) == 0) walls.add(new Wall(j*4,i*4,4,1));
             }
             System.out.println("+");
             // draw the west edge
             for (int j = 0; j < x; j++) {
                 System.out.print((maze[j][i] & 8) == 0 ? "|   " : "    ");
-                //PSEUDO if (maze[j][i] & 8) == 0) add a wall at the left
+                if ((maze[j][i] & 1) == 0) walls.add(new Wall(j*4,i*4,1,4));
             }
             System.out.println("|"); //PSEUDO add a wall at the left
         }
@@ -35,6 +39,7 @@ public class MazeGenerator {
         for (int j = 0; j < x; j++) {
             System.out.print("+---");
             //PSEUDO fill the bottom with walls
+            walls.add(new Wall(j, (y*4)+3, 4, 1));
         }
         System.out.println("+");
     }
