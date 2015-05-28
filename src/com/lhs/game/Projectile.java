@@ -4,6 +4,8 @@ public class Projectile extends Actor {
 	
 	public double x;
 	public double y;
+	public int w;
+	public int h;
 	public String name;
 	public Bullet type;
 	public int direction;
@@ -16,11 +18,11 @@ public class Projectile extends Actor {
 		
 	}
 	
-	public void move() {
+	public void move(double m) {
 		
 		direction = rebound();
 		
-		double m = type.speed;
+		m = type.speed;
 		
 		double dX = 0;
 		double dY = 0;
@@ -51,7 +53,7 @@ public class Projectile extends Actor {
 	
 	public void tick() {
 		
-		move();
+		move(1);
 		
 	}
 	

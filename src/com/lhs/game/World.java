@@ -1,22 +1,39 @@
 package com.lhs.game;
 
-import java.util.HashMap;
+import java.util.*;
 
 public class World {
 	
-	public HashMap<Actor, String> actors;
-	public HashMap<Wall, String> walls;
+	public ArrayList<Actor> actors;
+	public ArrayList<Wall> walls;
 	public int h;
 	public int w;
 	
 	public World(int h, int w) {
 		
-		this.actors = new HashMap<Actor, String>();
-		this.walls = new HashMap<Wall, String>();
+		this.actors = new ArrayList<Actor>();
+		this.walls = new ArrayList<Wall>();
 		this.h = h;
 		this.w = w;
 		
 		//TODO: Generate map
+		
+	}
+	
+	public void tick() {
+		
+		for (int i = 0; i<walls.size(); i++) {
+			Wall w = walls.get(i);
+			for (int j = 0; j<actors.size(); j++) {
+				if (actors.get(j) instanceof Projectile) {
+					Projectile p = (Projectile)actors.get(j);
+					if (w.intersects(p.x,p.y,p.w,p.h)) p.direction = w.getRebound(p.x, p.y, p.direction);
+					actors.add(j, p);
+				}
+			}
+		}
+		
+		for (int i = 0; i<actors.size(); i++) { Actor a = actors.get(i); a.move(1); actors.add(i, a); }
 		
 	}
 	

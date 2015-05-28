@@ -23,7 +23,7 @@ public class Tank extends Actor {
 		
 	}
 	
-	public boolean move(double m) {
+	public void move(double m) {
 		
 		double dX = 0;
 		double dY = 0;
@@ -40,8 +40,7 @@ public class Tank extends Actor {
 		else if (direction<270)dY = Math.cos(Math.toRadians(180-direction));
 		else dY = Math.cos(Math.toRadians(270-direction));
 		
-		if (canMove(m)) { x += m*dX; y += m*dY; return true; }
-		return false;
+		if (canMove(m)) { x += m*dX; y += m*dY; }
 		
 	}
 	
