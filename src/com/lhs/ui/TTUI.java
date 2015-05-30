@@ -1,50 +1,57 @@
 package com.lhs.ui;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import javax.swing.*;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
-public class TTUI 
-implements KeyListener{
-	public static void main(String args[]){
-		JButton play = new JButton(new PlayAction());
-		JButton quit = new JButton(new Quit());
-		play.setBackground(new Color(59, 89, 182));
-        play.setForeground(Color.RED);
-        play.setFocusPainted(false);
-        play.setFont(new Font("Tahoma", Font.BOLD, 12));
-        quit.setBackground(Color.blue);
-        quit.setForeground(Color.BLACK);
-        quit.setFocusPainted(false);
-        quit.setFont(new Font("Tahoma", Font.BOLD, 12));
+public class TTUI extends Application {
+	
+	public static void main(String[] args) {
 		
-		JPanel p = new JPanel();
-		p.setLayout(new GridLayout(3,2,5,5));
-		p.add(play);
-		p.add(quit);
-		
-		JFrame f = new JFrame("TT: Controls");
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setContentPane(p);
-		f.pack();
-		f.setVisible(true);
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
+		launch(args);
 		
 	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+	
+	public void start(Stage primaryStage) {
+		
+		primaryStage.setTitle("Tank Trouble");
+		
+		GridPane grid = new GridPane();
+		grid.setAlignment(Pos.CENTER);
+		grid.setHgap(10);
+		grid.setVgap(10);
+		grid.setPadding(new Insets(25,25,25,25));
+		
+        Button playBtn = new Button();
+        playBtn.setText("Play!");
+        playBtn.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("TODO: Launch game"); //TODO: launch game
+            }
+        });
+        grid.add(playBtn,0,0);
+        
+        Button quitBtn = new Button();
+        quitBtn.setText("Quit");
+        quitBtn.setOnAction(new EventHandler<ActionEvent>() {
+        	@Override
+        	public void handle(ActionEvent event) {
+        		System.exit(0);
+        	}
+        });
+        grid.add(quitBtn,0,1);
+        
+        Scene scene = new Scene(grid,300,275);
+        primaryStage.setScene(scene);
+        primaryStage.show();
 		
 	}
 
