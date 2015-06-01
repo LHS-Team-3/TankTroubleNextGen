@@ -51,8 +51,21 @@ public class TTUI extends Application {
         
         Scene scene = new Scene(grid,300,275);
         primaryStage.setScene(scene);
-        scene.getStylesheets().add("com.ls.ui.start.css");
+        //scene.getStylesheets().add(com.lhs.ui.TTUI.class.getResource("start.css").toExternalForm());
         primaryStage.show();
+        playGame(primaryStage);
+		
+	}
+	
+	public void playGame(Stage primaryStage) {
+		
+		GridPane grid = new GridPane();
+		grid.setAlignment(Pos.CENTER);
+		grid.setHgap(10);
+		grid.setVgap(10);
+		grid.setPadding(new Insets(25,25,25,25)); //comment
+		
+		
 		
 	}
 
