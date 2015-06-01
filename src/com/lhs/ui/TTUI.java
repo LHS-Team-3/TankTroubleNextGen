@@ -5,11 +5,16 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+
 import com.lhs.game.*;
+
 import java.util.*;
 
 public class TTUI extends Application {
@@ -37,6 +42,7 @@ public class TTUI extends Application {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("TODO: Launch game"); //TODO: launch game
+                playGame(primaryStage);
             }
         });
         grid.add(playBtn,0,0);
@@ -55,23 +61,36 @@ public class TTUI extends Application {
         primaryStage.setScene(scene);
         //scene.getStylesheets().add(com.lhs.ui.TTUI.class.getResource("start.css").toExternalForm());
         primaryStage.show();
-        playGame(primaryStage);
+        
 		
 	}
 	
 	public void playGame(Stage primaryStage) {
 		
-		GridPane grid = new GridPane();
-		grid.setAlignment(Pos.CENTER);
-		grid.setHgap(10);
-		grid.setVgap(10);
-		grid.setPadding(new Insets(25,25,25,25)); //comment
+		Group root = new Group();
+		Scene scene = new Scene(root,500,500,Color.WHITE);
 		
 		World game = new World(8,8);
 		for (int i = 0; i<500; i++) {
 			game.tick();
 			//try {Thread.sleep(1000); } catch (Exception e) { e.printStackTrace(); }
 		}
+		
+		//draw
+		ArrayList<Wall> walls = game.walls;
+		for (int i = 0; i<walls.size(); i++) {
+			Wall w = walls.get(i);
+			Rectangle r = new Rectangle();
+			r.setX(w.x*10);
+			r.setY(w.y*10);
+			r.setHeight(w.h*10);
+			r.setWidth(w.w*10);
+			r.setFill(Color.BLUE);
+			root.getChildren().addAll(r);
+		}
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		
 		
 	}
 
