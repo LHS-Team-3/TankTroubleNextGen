@@ -16,7 +16,10 @@ public class World {
 		this.h = h;
 		this.w = w;
 		
-		//TODO: Generate map
+		//generate map
+		MazeGenerator gen = new MazeGenerator(h,w);
+		gen.display();
+		walls = gen.walls;
 		
 	}
 	
@@ -34,6 +37,7 @@ public class World {
 		}
 		
 		for (int i = 0; i<actors.size(); i++) { Actor a = actors.get(i); a.move(1); actors.add(i, a); }
+		System.out.println("Tick!");
 		
 	}
 	

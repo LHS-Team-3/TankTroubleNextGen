@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import com.lhs.game.*;
+import java.util.*;
 
 public class TTUI extends Application {
 	
@@ -65,7 +67,11 @@ public class TTUI extends Application {
 		grid.setVgap(10);
 		grid.setPadding(new Insets(25,25,25,25)); //comment
 		
-		
+		World game = new World(8,8);
+		for (int i = 0; i<500; i++) {
+			game.tick();
+			//try {Thread.sleep(1000); } catch (Exception e) { e.printStackTrace(); }
+		}
 		
 	}
 
