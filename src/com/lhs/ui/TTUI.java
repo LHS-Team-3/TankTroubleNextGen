@@ -26,7 +26,7 @@ public class TTUI extends Application {
 		grid.setAlignment(Pos.CENTER);
 		grid.setHgap(10);
 		grid.setVgap(10);
-		grid.setPadding(new Insets(25,25,25,25));
+		grid.setPadding(new Insets(25,25,25,25)); //comment
 		
         Button playBtn = new Button();
         playBtn.setText("Play!");
