@@ -1,11 +1,9 @@
 package com.lhs.game;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class Tank extends Actor {
 	
-	public Color color;
-	public String name;
 	public Bullet shot;
 	public double x;
 	public double y;
@@ -16,8 +14,6 @@ public class Tank extends Actor {
 	
 	public Tank(Color color, String name) {
 		
-		this.color = color;
-		this.name = name;
 		this.direction = 0;
 		this.x = 0;
 		this.y = 0;
@@ -55,6 +51,12 @@ public class Tank extends Actor {
 		
 		//TODO: if corresponding keys are pressed, move
 		
+	}
+	public Projectile fire(){
+		Projectile bob = new Projectile("Bob",x, y);
+		bob.direction = direction;
+		bob.move(.7);
+		return bob;
 	}
 	
 }
