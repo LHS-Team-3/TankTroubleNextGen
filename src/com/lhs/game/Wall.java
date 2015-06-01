@@ -6,11 +6,18 @@ import java.awt.geom.*;
 public class Wall {
 	
 	public Rectangle2D bounds;
+	public int x;
+	public int y;
+	public double w;
+	public double h;
 	
 	public Wall(int x, int y, double w, double h) {
 		
 		bounds = new Rectangle2D.Double((double)x,(double)y,w,h);
-		
+		this.x = x;
+		this.y = y;
+		this.w = w;
+		this.h = h;
 	}
 	
 	public int getRebound(double x, double y, int d) {

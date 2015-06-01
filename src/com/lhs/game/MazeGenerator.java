@@ -39,7 +39,7 @@ public class MazeGenerator {
         for (int j = 0; j < x; j++) {
             System.out.print("+---");
             //PSEUDO fill the bottom with walls
-            walls.add(new Wall(j, (y*4)+3, 4, 1));
+            walls.add(new Wall(j*4, (y*4)+3, 4, 1));
         }
         System.out.println("+");
     }
