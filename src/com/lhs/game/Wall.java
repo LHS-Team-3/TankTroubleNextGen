@@ -2,6 +2,7 @@ package com.lhs.game;
 
 import java.awt.geom.*;
 
+
 public class Wall {
 	
 	public Rectangle2D bounds;

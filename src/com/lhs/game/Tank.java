@@ -13,6 +13,7 @@ public class Tank extends Actor {
 	
 	//TODO: make actual tank class (must get input for movement)
 	
+	
 	public Tank(Color color, String name) {
 		
 		this.color = color;
