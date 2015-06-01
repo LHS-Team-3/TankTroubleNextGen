@@ -1,5 +1,7 @@
 package com.lhs.ui;
 
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,14 +10,16 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.scene.input.KeyEvent;
 
-import com.lhs.game.*;
-
-import java.util.*;
+import com.lhs.game.Tank;
+import com.lhs.game.Wall;
+import com.lhs.game.World;
 
 public class TTUI extends Application {
 	
@@ -61,8 +65,6 @@ public class TTUI extends Application {
         primaryStage.setScene(scene);
         //scene.getStylesheets().add(com.lhs.ui.TTUI.class.getResource("start.css").toExternalForm());
         primaryStage.show();
-        
-		
 	}
 	
 	public void playGame(Stage primaryStage) {
@@ -90,9 +92,23 @@ public class TTUI extends Application {
 		}
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		//primaryStage.addEventHandler(arg0, arg1);
-		
-		
+		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+            	Tank t1 = (Tank)game.actors.get(0);
+            	Tank t2 = (Tank)game.actors.get(2);
+                switch (event.getCode()) {
+                    case UP:	t1.move(2);	game.actors.add(0,t1); break;
+                    case DOWN:   t1.move(-2);	game.actors.add(0,t1); break;
+                    case LEFT:   t1.direction-=3;	game.actors.add(0,t1); break;
+                    case RIGHT:  t1.direction+=3;	game.actors.add(0,t1); break;
+                    case E: t2.move(2);	    game.actors.add(1,t2); break;
+                    case D: t2.move(-2);	game.actors.add(1,t2); break;
+                    case S: t2.direction-=3;	game.actors.add(1,t2); break;
+                    case F: t2.direction+=3;	game.actors.add(1,t2); break;
+                    default: break;
+                }
+            }
+		});
 	}
-
 }
