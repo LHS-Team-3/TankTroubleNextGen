@@ -81,15 +81,16 @@ public class TTUI extends Application {
 		for (int i = 0; i<walls.size(); i++) {
 			Wall w = walls.get(i);
 			Rectangle r = new Rectangle();
-			r.setX(w.x*10);
-			r.setY(w.y*10);
-			r.setHeight(w.h*10);
-			r.setWidth(w.w*10);
+			r.setX(w.x*15);
+			r.setY(w.y*15);
+			r.setHeight(w.h*15);
+			r.setWidth(w.w*15);
 			r.setFill(Color.BLUE);
 			root.getChildren().addAll(r);
 		}
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		//primaryStage.addEventHandler(arg0, arg1);
 		
 		
 	}
