@@ -72,7 +72,7 @@ public class TTUI extends Application {
 		Group root = new Group();
 		Scene scene = new Scene(root,500,500,Color.WHITE);
 		
-		World game = new World(8,8);
+		final World game = new World(8,8);
 		for (int i = 0; i<500; i++) {
 			game.tick();
 			//try {Thread.sleep(1000); } catch (Exception e) { e.printStackTrace(); }
