@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import javafx.scene.input.KeyEvent;
 
 import com.lhs.game.Actor;
+import com.lhs.game.Projectile;
 import com.lhs.game.Tank;
 import com.lhs.game.Wall;
 import com.lhs.game.World;
@@ -149,7 +150,11 @@ public class TTUI extends Application {
 	
 	public ImageView draw(Actor a) {
 		ImageView view = new ImageView();
-		if (a instanceof Tank) { Tank t = (Tank)a; view.setImage(t.image); }
+		Image image;
+		if (a instanceof Tank) { Tank t = (Tank)a; view.setImage(t.image); image = t.image; }
+		else if (a instanceof Projectile) { /*TODO: make projectile gray square*/ }
+		else image = new Image("/com/lhs/resource/loau.png");
+		//view.setX();
 		view.setRotate(a.direction);
 		return view;
 	}
