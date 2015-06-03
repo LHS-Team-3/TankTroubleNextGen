@@ -15,12 +15,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.scene.input.KeyEvent;
 
 import com.lhs.game.Actor;
+import com.lhs.game.Projectile;
 import com.lhs.game.Tank;
 import com.lhs.game.Wall;
 import com.lhs.game.World;
@@ -47,7 +49,7 @@ public class TTUI extends Application {
 		grid.setStyle("-fx-background-image: url('http://duke.kenai.com/wave/Wave.jpg')");
 		
         Button playBtn = new Button();
-        playBtn.setText("Play!(Jugar!)");
+        playBtn.setText("Play! (Jugar!) (Joue!)");
         final Stage newStage = primaryStage;
         playBtn.setOnAction(new EventHandler<ActionEvent>() {
  
@@ -68,7 +70,7 @@ public class TTUI extends Application {
         grid.add(playBtn,0,0);
         
         Button quitBtn = new Button();
-        quitBtn.setText("Quit (dejar)");
+        quitBtn.setText("Quit (dejar) (arreter)");
         quitBtn.setOnAction(new EventHandler<ActionEvent>() {
         	@Override
         	public void handle(ActionEvent event) {
@@ -104,10 +106,6 @@ public class TTUI extends Application {
 		
 		game = new World(8,8);
 		//final World fGame = game;
-		for (int i = 0; i<1; i++) {
-			game.tick();
-			//try {Thread.sleep(1000); } catch (Exception e) { e.printStackTrace(); }
-		}
 		
 		EventHandler<KeyEvent> keyPress  = new EventHandler<KeyEvent>() {
 			@Override
@@ -116,14 +114,14 @@ public class TTUI extends Application {
 					Tank t1 = (Tank)fGame.actors.get(0);
 					Tank t2 = (Tank)fGame.actors.get(1);
 					switch (event.getCode()) {
-	                case UP:	t1.move(2);	fGame.actors.add(0,t1); System.out.println("up"); break;
-	                case DOWN:   t1.move(-2);	fGame.actors.add(0,t1); break;
-	                case LEFT:   t1.direction-=3;	fGame.actors.add(0,t1); break;
-	                case RIGHT:  t1.direction+=3;	fGame.actors.add(0,t1); break;
-	                case E: t2.move(2);	    fGame.actors.add(1,t2); break;
-	                case D: t2.move(-2);	fGame.actors.add(1,t2); break;
-	                case S: t2.direction-=3;	fGame.actors.add(1,t2); break;
-	                case F: t2.direction+=3;	fGame.actors.add(1,t2); break;
+	                case UP:	t1.move(2);	fGame.actors.set(0,t1); System.out.println("up"); break;
+	                case DOWN:   t1.move(-2);	fGame.actors.set(0,t1); break;
+	                case LEFT:   t1.direction-=3;	fGame.actors.set(0,t1); break;
+	                case RIGHT:  t1.direction+=3;	fGame.actors.set(0,t1); break;
+	                case E: t2.move(2);	    fGame.actors.set(1,t2); break;
+	                case D: t2.move(-2);	fGame.actors.set(1,t2); break;
+	                case S: t2.direction-=3;	fGame.actors.set(1,t2); break;
+	                case F: t2.direction+=3;	fGame.actors.set(1,t2); break;
 	                default: break;
 				}
 			}
@@ -152,16 +150,18 @@ public class TTUI extends Application {
 	
 	public final World getWorld() {	return game; }
 	
-	public HBox drawWorld() {
+	public Pane drawWorld() {
 		ArrayList<Actor> actors = game.actors;
-		HBox box = new HBox();
+		Pane box = new Pane();
 		for (int i = 0; i<actors.size(); i++) box.getChildren().add(draw(actors.get(i)));
 		return box;
 	}
 	
 	public ImageView draw(Actor a) {
 		ImageView view = new ImageView();
-		if (a instanceof Tank) { Tank t = (Tank)a; view.setImage(t.image); }
+		Image image;
+		if (a instanceof Tank) { Tank t = (Tank)a; view.setImage(t.image); image = t.image; view.setX(t.x-(image.getWidth()/2)); view.setY(t.y-(image.getHeight()/2)); }
+		else if (a instanceof Projectile) { /*TODO: make projectile gray square*/ }
 		view.setRotate(a.direction);
 		return view;
 	}
