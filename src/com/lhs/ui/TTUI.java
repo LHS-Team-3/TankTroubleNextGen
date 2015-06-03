@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -119,17 +120,17 @@ public class TTUI extends Application {
 					World fGame = getWorld();
 					Tank t1 = (Tank)fGame.actors.get(0);
 					Tank t2 = (Tank)fGame.actors.get(1);
-					switch (event.getCode()) {
-	                case UP:	t1.move(2);	fGame.actors.set(0,t1); System.out.println("up"); redraw(); break;
-	                case DOWN:   t1.move(-2);	fGame.actors.set(0,t1); redraw(); break;
-	                case LEFT:   t1.direction-=3;	fGame.actors.set(0,t1); redraw(); break;
-	                case RIGHT:  t1.direction+=3;	fGame.actors.set(0,t1); redraw(); break;
-	                case E: t2.move(2);	    fGame.actors.set(1,t2); redraw(); break;
-	                case D: t2.move(-2);	fGame.actors.set(1,t2); redraw(); break;
-	                case S: t2.direction-=3;	fGame.actors.set(1,t2); redraw(); break;
-	                case F: t2.direction+=3;	fGame.actors.set(1,t2); redraw(); break;
-	                default: break;
-				}
+					KeyCode e = event.getCode();
+					
+	                if (e==KeyCode.UP) {	t1.move(2);	fGame.actors.set(0,t1); System.out.println("up"); redraw(); }
+	                if (e==KeyCode.DOWN) {   t1.move(-2);	fGame.actors.set(0,t1); redraw(); }
+	                if (e==KeyCode.LEFT) {   t1.direction-=3;	fGame.actors.set(0,t1); redraw(); }
+	                if (e==KeyCode.RIGHT) {  t1.direction+=3;	fGame.actors.set(0,t1); redraw(); }
+	                if (e==KeyCode.E) { t2.move(2);	    fGame.actors.set(1,t2); redraw(); }
+	                if (e==KeyCode.D) { t2.move(-2);	fGame.actors.set(1,t2); redraw(); }
+	                if (e==KeyCode.S) { t2.direction-=3;	fGame.actors.set(1,t2); redraw() ;}
+	                if (e==KeyCode.F) { t2.direction+=3;	fGame.actors.set(1,t2); redraw(); }
+				
 			}
         };
 		
