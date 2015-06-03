@@ -48,7 +48,7 @@ public class TTUI extends Application {
 		grid.setPadding(new Insets(25,25,25,25)); //comment
 		
         Button playBtn = new Button();
-        playBtn.setText("Play!");
+        playBtn.setText("Play!(Jugar!)");
         final Stage newStage = primaryStage;
         playBtn.setOnAction(new EventHandler<ActionEvent>() {
  
@@ -61,15 +61,15 @@ public class TTUI extends Application {
         });
 		playBtn.setStyle("-fx-background-color:\n" +
 				"        linear-gradient(#f0ff35, #a9ff00),\n" +
-				"        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);\n" +
+				"        radial-gradient(center 50% -40%, radius 2300%, #b8ee36 45%, #80c800 50%);\n" +
 				"    -fx-background-radius: 6, 5;\n" +
 				"    -fx-background-insets: 0, 1;\n" +
-				"    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );\n" +
+				"    -fx-effect: dropshadow( three-pass-box , rgba(7,0,0,0.4) , 5, 0.0 , 0 , 1 );\n" +
 				"    -fx-text-fill: #395306;");
         grid.add(playBtn,0,0);
         
         Button quitBtn = new Button();
-        quitBtn.setText("Quit");
+        quitBtn.setText("Quit (dejar)");
         quitBtn.setOnAction(new EventHandler<ActionEvent>() {
         	@Override
         	public void handle(ActionEvent event) {
@@ -79,7 +79,7 @@ public class TTUI extends Application {
 		quitBtn.setStyle("-fx-background-color: linear-gradient(#ff5400, #be1d00);\n" +
 				"    -fx-background-radius: 30;\n" +
 				"    -fx-background-insets: 0;\n" +
-				"    -fx-text-fill: white;");
+				"    -fx-text-fill: black;");
         grid.add(quitBtn,0,1);
         
         
