@@ -46,20 +46,23 @@ public class TTUI extends Application {
 		grid.setHgap(10);
 		grid.setVgap(10);
 		grid.setPadding(new Insets(25,25,25,25));
-		grid.setStyle("-fx-background-color: #000");
-		
-        Button playBtn = new Button();
-        playBtn.setText("Play! (Jugar!) (Joue!)");
-        final Stage newStage = primaryStage;
-        playBtn.setOnAction(new EventHandler<ActionEvent>() {
- 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("TODO: Launch game"); //TODO: launch game
-                
-                playGame(newStage);
-            }
-        });
+		grid.setStyle("-fx-background-image: url(com/lhs/ui/2014-06-Military-Tank-Photos.jpg);\n" +
+				"    -fx-background-repeat: stretch;   \n" +
+				"    -fx-background-size: 900 506;\n" +
+				"    -fx-background-position: center center;");
+
+		Button playBtn = new Button();
+		playBtn.setText("Play! (Jugar!) (Joue!)");
+		final Stage newStage = primaryStage;
+		playBtn.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("TODO: Launch game"); //TODO: launch game
+
+				playGame(newStage);
+			}
+		});
 		playBtn.setStyle("-fx-background-color:\n" +
 				"        linear-gradient(#f0ff35, #a9ff00),\n" +
 				"        radial-gradient(center 50% -40%, radius 2300%, #b8ee36 45%, #80c800 50%);\n" +
