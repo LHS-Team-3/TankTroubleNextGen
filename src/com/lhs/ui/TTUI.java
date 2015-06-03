@@ -148,7 +148,6 @@ public class TTUI extends Application {
 			r.setWidth(w.w*15);
 			r.setFill(Color.BLUE);
 			root.getChildren().addAll(r);
-			rootWall.getChildren().addAll(r);
 		}
 		
 		root.getChildren().add(drawWorld());
@@ -160,8 +159,7 @@ public class TTUI extends Application {
 	}
 	
 	public void redraw() {
-		root.getChildren().clear();
-		root.getChildren().addAll(rootWall.getChildren());
+		for (int i = 0; i<root.getChildren().size(); i++) if (root.getChildren().get(i) instanceof Pane) { root.getChildren().remove(i); System.out.println("remove"); }
 		root.getChildren().add(drawWorld());
 	}
 	
