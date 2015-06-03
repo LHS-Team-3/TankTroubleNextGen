@@ -22,7 +22,7 @@ public class MazeGenerator {
     public void display() {
         for (int i = 0; i < y; i++) {
             // draw the north edge
-            for (int j = 0; j < x; j++) {
+            for (int j = 0; j < x; j++) {        
                 System.out.print((maze[j][i] & 1) == 0 ? "+---" : "+   ");
                 //PSEUDO if (maze[j][i] & 1 == 0) add a wall at the top
                 if ((maze[j][i] & 1) == 0 && true) walls.add(new Wall(j*4,i*4,4,1));
