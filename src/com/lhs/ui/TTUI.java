@@ -46,7 +46,7 @@ public class TTUI extends Application {
 		grid.setHgap(10);
 		grid.setVgap(10);
 		grid.setPadding(new Insets(25,25,25,25));
-		grid.setStyle("-fx-background-image: url('http://duke.kenai.com/wave/Wave.jpg')");
+		grid.setStyle("-fx-background-color: #000");
 		
         Button playBtn = new Button();
         playBtn.setText("Play! (Jugar!) (Joue!)");
@@ -146,6 +146,11 @@ public class TTUI extends Application {
 		primaryStage.show();
 		primaryStage.sizeToScene();
 		scene.setOnKeyPressed(keyPress);
+		while (true) {
+			root.getChildren().add(drawWorld());
+			try { Thread.sleep(1000); } catch(Exception e) {}
+			primaryStage.setScene(scene);
+		}
 	}
 	
 	public final World getWorld() {	return game; }
