@@ -20,8 +20,6 @@ public class Projectile extends Actor {
 	
 	public void move(double m) {
 		
-		direction = rebound();
-		
 		m = type.speed;
 		
 		double dX = 0;
@@ -40,15 +38,6 @@ public class Projectile extends Actor {
 		else dY = Math.cos(Math.toRadians(270-direction));
 		
 		x += m*dX; y += m*dY;
-		
-	}
-	
-	public int rebound() {
-		
-		//TODO: if colliding, find surface and get angle of rebound
-		
-		
-		return direction;
 		
 	}
 	

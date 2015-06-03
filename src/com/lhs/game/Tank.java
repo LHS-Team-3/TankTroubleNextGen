@@ -1,16 +1,19 @@
 package com.lhs.game;
 
+import javafx.scene.image.Image;
+
 public class Tank extends Actor {
 	
 	public Bullet shot;
 	public double x;
 	public double y;
 	public int direction; //0-359, describes direction in terms of degrees, straight up is 0, straight right is 90
+	public Image image;
 	
 	//TODO: make actual tank class (must get input for movement)
 	
 	
-	public Tank() {
+	public Tank(Image image) {
 		
 		this.direction = 0;
 		this.x = 0;

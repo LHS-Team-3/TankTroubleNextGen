@@ -17,6 +17,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.scene.input.KeyEvent;
 
+import com.lhs.game.Actor;
 import com.lhs.game.Tank;
 import com.lhs.game.Wall;
 import com.lhs.game.World;
@@ -131,5 +132,14 @@ public class TTUI extends Application {
 	}
 	
 	public final World getWorld() {	return game; }
+	
+	public void drawWorld() {
+		ArrayList<Actor> actors = game.actors;
+		for (int i = 0; i<actors.size(); i++) draw(actors.get(i));
+	}
+	
+	public void draw(Actor a) {
+		
+	}
 	
 }

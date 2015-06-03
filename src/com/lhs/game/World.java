@@ -2,6 +2,8 @@ package com.lhs.game;
 
 import java.util.*;
 
+import javafx.scene.image.Image;
+
 public class World {
 	
 	public ArrayList<Actor> actors;
@@ -21,8 +23,8 @@ public class World {
 		gen.display();
 		walls = gen.walls;
 		
-		actors.add(new Tank());
-		actors.add(new Tank());
+		actors.add(new Tank(new Image("com/lhs/resource/loau.png")));
+		actors.add(new Tank(new Image("com/lhs/resource/loau.png")));
 		
 	}
 	
@@ -34,12 +36,13 @@ public class World {
 				if (actors.get(j) instanceof Projectile) {
 					Projectile p = (Projectile)actors.get(j);
 					if (w.intersects(p.x,p.y,p.w,p.h)) p.direction = w.getRebound(p.x, p.y, p.direction);
+					p.tick();
 					actors.add(j, p);
 				}
 			}
 		}
 		
-		for (int i = 0; i<actors.size(); i++) { Actor a = actors.get(i); actors.set(i, a); }
+		//for (int i = 0; i<actors.size(); i++) { Actor a = actors.get(i); actors.set(i, a); }
 		
 	}
 	
