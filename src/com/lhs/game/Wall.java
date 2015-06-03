@@ -18,6 +18,7 @@ public class Wall {
 		this.y = y;
 		this.w = w;
 		this.h = h;
+		
 	}
 	
 	public int getRebound(double x, double y, int d) {

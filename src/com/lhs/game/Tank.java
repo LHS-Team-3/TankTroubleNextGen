@@ -1,6 +1,6 @@
 package com.lhs.game;
 
-import java.awt.Color;
+import javafx.scene.image.Image;
 
 public class Tank extends Actor {
 	
@@ -8,15 +8,17 @@ public class Tank extends Actor {
 	public double x;
 	public double y;
 	public int direction; //0-359, describes direction in terms of degrees, straight up is 0, straight right is 90
+	public Image image;
 	
 	//TODO: make actual tank class (must get input for movement)
 	
 	
-	public Tank(Color color, String name) {
+	public Tank(Image image) {
 		
-		this.direction = 0;
+		this.direction = 90;
 		this.x = 0;
 		this.y = 0;
+		this.image = image;
 		
 	}
 	
