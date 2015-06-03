@@ -145,6 +145,11 @@ public class TTUI extends Application {
 		primaryStage.show();
 		primaryStage.sizeToScene();
 		scene.setOnKeyPressed(keyPress);
+		while (true) {
+			root.getChildren().add(drawWorld());
+			try { Thread.sleep(1000); } catch(Exception e) {}
+			primaryStage.setScene(scene);
+		}
 	}
 	
 	public final World getWorld() {	return game; }
