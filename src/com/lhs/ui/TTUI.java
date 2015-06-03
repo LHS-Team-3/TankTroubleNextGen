@@ -10,8 +10,11 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -126,20 +129,29 @@ public class TTUI extends Application {
 			r.setFill(Color.BLUE);
 			root.getChildren().addAll(r);
 		}
+		
+		root.getChildren().add(drawWorld());
+		
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		primaryStage.sizeToScene();
 		scene.setOnKeyPressed(keyPress);
 	}
 	
 	public final World getWorld() {	return game; }
 	
-	public void drawWorld() {
+	public HBox drawWorld() {
 		ArrayList<Actor> actors = game.actors;
-		for (int i = 0; i<actors.size(); i++) draw(actors.get(i));
+		HBox box = new HBox();
+		for (int i = 0; i<actors.size(); i++) box.getChildren().add(draw(actors.get(i)));
+		return box;
 	}
 	
-	public void draw(Actor a) {
-		
+	public ImageView draw(Actor a) {
+		ImageView view = new ImageView();
+		if (a instanceof Tank) { Tank t = (Tank)a; view.setImage(t.image); }
+		view.setRotate(a.direction);
+		return view;
 	}
 	
 }

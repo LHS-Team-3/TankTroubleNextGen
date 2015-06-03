@@ -23,8 +23,8 @@ public class World {
 		gen.display();
 		walls = gen.walls;
 		
-		actors.add(new Tank(new Image("com/lhs/resource/loau.png")));
-		actors.add(new Tank(new Image("com/lhs/resource/loau.png")));
+		actors.add(new Tank(new Image("http://puu.sh/iatcN/87a1fc3a39.png")));
+		actors.add(new Tank(new Image("/com/lhs/resource/loau.png")));
 		
 	}
 	
