@@ -175,9 +175,9 @@ public class TTUI extends Application {
 	public ImageView draw(Actor a) {
 		ImageView view = new ImageView();
 		Image image;
-		if (a instanceof Tank) { Tank t = (Tank)a; view.setImage(t.image); image = t.image; view.setX(t.x-(image.getWidth()/2)); view.setY(t.y-(image.getHeight()/2)); }
+		if (a instanceof Tank) { Tank t = (Tank)a; view.setImage(t.image); image = t.image; view.setX(t.x-(image.getWidth()/2)); view.setY(t.y-(image.getHeight()/2)); view.setRotate(t.direction); }
 		else if (a instanceof Projectile) { /*TODO: make projectile gray square*/ }
-		view.setRotate(a.direction);
+		//view.setRotate(a.direction);
 		return view;
 	}
 	

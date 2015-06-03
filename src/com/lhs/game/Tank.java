@@ -15,7 +15,7 @@ public class Tank extends Actor {
 	
 	public Tank(Image image) {
 		
-		this.direction = 0;
+		this.direction = 90;
 		this.x = 0;
 		this.y = 0;
 		this.image = image;
