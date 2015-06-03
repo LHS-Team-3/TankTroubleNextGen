@@ -30,6 +30,7 @@ import com.lhs.game.World;
 public class TTUI extends Application {
 	
 	public World game;
+	public Stage primStage;
 	
 	public static void main(String[] args) {
 		
@@ -99,9 +100,11 @@ public class TTUI extends Application {
         primaryStage.show();
 	}
 	
+	public Group root;
+	
 	public void playGame(Stage primaryStage) {
 		
-		Group root = new Group();
+		root = new Group();
 		Scene scene = new Scene(root,500,500,Color.WHITE);
 		
 		game = new World(8,8);
@@ -114,14 +117,14 @@ public class TTUI extends Application {
 					Tank t1 = (Tank)fGame.actors.get(0);
 					Tank t2 = (Tank)fGame.actors.get(1);
 					switch (event.getCode()) {
-	                case UP:	t1.move(2);	fGame.actors.set(0,t1); System.out.println("up"); break;
-	                case DOWN:   t1.move(-2);	fGame.actors.set(0,t1); break;
-	                case LEFT:   t1.direction-=3;	fGame.actors.set(0,t1); break;
-	                case RIGHT:  t1.direction+=3;	fGame.actors.set(0,t1); break;
-	                case E: t2.move(2);	    fGame.actors.set(1,t2); break;
-	                case D: t2.move(-2);	fGame.actors.set(1,t2); break;
-	                case S: t2.direction-=3;	fGame.actors.set(1,t2); break;
-	                case F: t2.direction+=3;	fGame.actors.set(1,t2); break;
+	                case UP:	t1.move(2);	fGame.actors.set(0,t1); System.out.println("up"); redraw(); break;
+	                case DOWN:   t1.move(-2);	fGame.actors.set(0,t1); redraw(); break;
+	                case LEFT:   t1.direction-=3;	fGame.actors.set(0,t1); redraw(); break;
+	                case RIGHT:  t1.direction+=3;	fGame.actors.set(0,t1); redraw(); break;
+	                case E: t2.move(2);	    fGame.actors.set(1,t2); redraw(); break;
+	                case D: t2.move(-2);	fGame.actors.set(1,t2); redraw(); break;
+	                case S: t2.direction-=3;	fGame.actors.set(1,t2); redraw(); break;
+	                case F: t2.direction+=3;	fGame.actors.set(1,t2); redraw(); break;
 	                default: break;
 				}
 			}
@@ -146,11 +149,10 @@ public class TTUI extends Application {
 		primaryStage.show();
 		primaryStage.sizeToScene();
 		scene.setOnKeyPressed(keyPress);
-		while (true) {
-			root.getChildren().add(drawWorld());
-			try { Thread.sleep(1000); } catch(Exception e) {}
-			primaryStage.setScene(scene);
-		}
+	}
+	
+	public void redraw() {
+		root.getChildren().add(drawWorld());
 	}
 	
 	public final World getWorld() {	return game; }
