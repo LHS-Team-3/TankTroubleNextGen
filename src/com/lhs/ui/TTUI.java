@@ -57,6 +57,13 @@ public class TTUI extends Application {
                 playGame(newStage);
             }
         });
+		playBtn.setStyle("-fx-background-color:\n" +
+				"        linear-gradient(#f0ff35, #a9ff00),\n" +
+				"        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);\n" +
+				"    -fx-background-radius: 6, 5;\n" +
+				"    -fx-background-insets: 0, 1;\n" +
+				"    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );\n" +
+				"    -fx-text-fill: #395306;");
         grid.add(playBtn,0,0);
         
         Button quitBtn = new Button();
@@ -67,6 +74,10 @@ public class TTUI extends Application {
         		System.exit(0);
         	}
         });
+		quitBtn.setStyle("-fx-background-color: linear-gradient(#ff5400, #be1d00);\n" +
+				"    -fx-background-radius: 30;\n" +
+				"    -fx-background-insets: 0;\n" +
+				"    -fx-text-fill: white;");
         grid.add(quitBtn,0,1);
         
         
@@ -122,7 +133,7 @@ public class TTUI extends Application {
 		for (int i = 0; i<walls.size(); i++) {
 			Wall w = walls.get(i);
 			Rectangle r = new Rectangle();
-			r.setX(w.x*15);
+			r.setX(w.x* 15);
 			r.setY(w.y*15);
 			r.setHeight(w.h*15);
 			r.setWidth(w.w*15);
