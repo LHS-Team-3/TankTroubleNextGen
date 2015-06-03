@@ -105,10 +105,12 @@ public class TTUI extends Application {
 	}
 	
 	public Group root;
+	public Group rootWall;
 	
 	public void playGame(Stage primaryStage) {
 		
 		root = new Group();
+		rootWall = new Group();
 		Scene scene = new Scene(root,500,500,Color.WHITE);
 		
 		game = new World(8,8);
@@ -122,14 +124,15 @@ public class TTUI extends Application {
 					Tank t2 = (Tank)fGame.actors.get(1);
 					KeyCode e = event.getCode();
 					
-	                if (e==KeyCode.UP) {	t1.move(2);	fGame.actors.set(0,t1); System.out.println("up"); redraw(); }
-	                if (e==KeyCode.DOWN) {   t1.move(-2);	fGame.actors.set(0,t1); redraw(); }
-	                if (e==KeyCode.LEFT) {   t1.direction-=3;	fGame.actors.set(0,t1); redraw(); }
-	                if (e==KeyCode.RIGHT) {  t1.direction+=3;	fGame.actors.set(0,t1); redraw(); }
-	                if (e==KeyCode.E) { t2.move(2);	    fGame.actors.set(1,t2); redraw(); }
-	                if (e==KeyCode.D) { t2.move(-2);	fGame.actors.set(1,t2); redraw(); }
-	                if (e==KeyCode.S) { t2.direction-=3;	fGame.actors.set(1,t2); redraw() ;}
-	                if (e==KeyCode.F) { t2.direction+=3;	fGame.actors.set(1,t2); redraw(); }
+	                if (e==KeyCode.UP) {	t1.move(2);	fGame.actors.set(0,t1); System.out.println("up"); }
+	                if (e==KeyCode.DOWN) {   t1.move(-2);	fGame.actors.set(0,t1); }
+	                if (e==KeyCode.LEFT) {   t1.direction-=3;	fGame.actors.set(0,t1); }
+	                if (e==KeyCode.RIGHT) {  t1.direction+=3;	fGame.actors.set(0,t1); }
+	                if (e==KeyCode.E) { t2.move(2);	    fGame.actors.set(1,t2); }
+	                if (e==KeyCode.D) { t2.move(-2);	fGame.actors.set(1,t2); }
+	                if (e==KeyCode.S) { t2.direction-=3;	fGame.actors.set(1,t2); }
+	                if (e==KeyCode.F) { t2.direction+=3;	fGame.actors.set(1,t2); }
+	                redraw();
 				
 			}
         };
@@ -145,6 +148,7 @@ public class TTUI extends Application {
 			r.setWidth(w.w*15);
 			r.setFill(Color.BLUE);
 			root.getChildren().addAll(r);
+			rootWall.getChildren().addAll(r);
 		}
 		
 		root.getChildren().add(drawWorld());
@@ -156,6 +160,8 @@ public class TTUI extends Application {
 	}
 	
 	public void redraw() {
+		root.getChildren().clear();
+		root.getChildren().addAll(rootWall.getChildren());
 		root.getChildren().add(drawWorld());
 	}
 	
