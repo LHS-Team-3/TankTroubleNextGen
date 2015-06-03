@@ -25,7 +25,7 @@ public class MazeGenerator {
             for (int j = 0; j < x; j++) {
                 System.out.print((maze[j][i] & 1) == 0 ? "+---" : "+   ");
                 //PSEUDO if (maze[j][i] & 1 == 0) add a wall at the top
-                if ((maze[j][i] & 1) == 0 && Math.random()>0.1) walls.add(new Wall(j*4,i*4,4,1));
+                if ((maze[j][i] & 1) == 0 && true) walls.add(new Wall(j*4,i*4,4,1));
             }
             System.out.println("+");
             // draw the west edge

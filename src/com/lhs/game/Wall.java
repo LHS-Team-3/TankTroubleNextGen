@@ -29,7 +29,7 @@ public class Wall {
 		if (out==Rectangle2D.OUT_BOTTOM) ans = 180-d;
 		if (out==Rectangle2D.OUT_RIGHT) ans = 360-d;
 		if (out==Rectangle2D.OUT_TOP) ans = 180-d;
-		
+		 
 		return ans;
 		
 	}
