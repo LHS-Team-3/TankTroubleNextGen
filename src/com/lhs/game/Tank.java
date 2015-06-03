@@ -1,7 +1,5 @@
 package com.lhs.game;
 
-import java.awt.Color;
-
 public class Tank extends Actor {
 	
 	public Bullet shot;
@@ -12,7 +10,7 @@ public class Tank extends Actor {
 	//TODO: make actual tank class (must get input for movement)
 	
 	
-	public Tank(Color color, String name) {
+	public Tank() {
 		
 		this.direction = 0;
 		this.x = 0;

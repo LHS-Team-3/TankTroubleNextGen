@@ -41,12 +41,14 @@ public class TTUI extends Application {
 		
         Button playBtn = new Button();
         playBtn.setText("Play!");
+        final Stage newStage = primaryStage;
         playBtn.setOnAction(new EventHandler<ActionEvent>() {
  
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("TODO: Launch game"); //TODO: launch game
-                playGame(primaryStage);
+                
+                playGame(newStage);
             }
         });
         grid.add(playBtn,0,0);
@@ -61,8 +63,18 @@ public class TTUI extends Application {
         });
         grid.add(quitBtn,0,1);
         
+        
+        EventHandler<KeyEvent> test  = new EventHandler<KeyEvent>() {
+			@Override
+	        public void handle(KeyEvent event) {
+				System.out.println(event.getCode());
+			}
+        };
+        
+        
         Scene scene = new Scene(grid,300,275);
         primaryStage.setScene(scene);
+        scene.setOnKeyPressed(test);
         //scene.getStylesheets().add(com.lhs.ui.TTUI.class.getResource("start.css").toExternalForm());
         primaryStage.show();
 	}
@@ -72,11 +84,31 @@ public class TTUI extends Application {
 		Group root = new Group();
 		Scene scene = new Scene(root,500,500,Color.WHITE);
 		
-		final World game = new World(8,8);
+		World game = new World(8,8);
+		final World fGame = game;
 		for (int i = 0; i<500; i++) {
 			game.tick();
 			//try {Thread.sleep(1000); } catch (Exception e) { e.printStackTrace(); }
 		}
+		
+		EventHandler<KeyEvent> keyPress  = new EventHandler<KeyEvent>() {
+			@Override
+	            public void handle(KeyEvent event) {
+					Tank t1 = (Tank)fGame.actors.get(0);
+					Tank t2 = (Tank)fGame.actors.get(1);
+					switch (event.getCode()) {
+	                case UP:	t1.move(2);	fGame.actors.add(0,t1); System.out.println("up"); break;
+	                case DOWN:   t1.move(-2);	fGame.actors.add(0,t1); break;
+	                case LEFT:   t1.direction-=3;	fGame.actors.add(0,t1); break;
+	                case RIGHT:  t1.direction+=3;	fGame.actors.add(0,t1); break;
+	                case E: t2.move(2);	    fGame.actors.add(1,t2); break;
+	                case D: t2.move(-2);	fGame.actors.add(1,t2); break;
+	                case S: t2.direction-=3;	fGame.actors.add(1,t2); break;
+	                case F: t2.direction+=3;	fGame.actors.add(1,t2); break;
+	                default: break;
+				}
+			}
+        };
 		
 		//draw
 		ArrayList<Wall> walls = game.walls;
@@ -92,23 +124,6 @@ public class TTUI extends Application {
 		}
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-            	Tank t1 = (Tank)game.actors.get(0);
-            	Tank t2 = (Tank)game.actors.get(2);
-                switch (event.getCode()) {
-                    case UP:	t1.move(2);	game.actors.add(0,t1); break;
-                    case DOWN:   t1.move(-2);	game.actors.add(0,t1); break;
-                    case LEFT:   t1.direction-=3;	game.actors.add(0,t1); break;
-                    case RIGHT:  t1.direction+=3;	game.actors.add(0,t1); break;
-                    case E: t2.move(2);	    game.actors.add(1,t2); break;
-                    case D: t2.move(-2);	game.actors.add(1,t2); break;
-                    case S: t2.direction-=3;	game.actors.add(1,t2); break;
-                    case F: t2.direction+=3;	game.actors.add(1,t2); break;
-                    default: break;
-                }
-            }
-		});
+		scene.setOnKeyPressed(keyPress);
 	}
 }

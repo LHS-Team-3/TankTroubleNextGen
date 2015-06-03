@@ -21,6 +21,9 @@ public class World {
 		gen.display();
 		walls = gen.walls;
 		
+		actors.add(new Tank());
+		actors.add(new Tank());
+		
 	}
 	
 	public void tick() {
