@@ -46,7 +46,10 @@ public class TTUI extends Application {
 		grid.setHgap(10);
 		grid.setVgap(10);
 		grid.setPadding(new Insets(25,25,25,25));
-		grid.setStyle("-fx-background-image: url('http://duke.kenai.com/wave/Wave.jpg')");
+		grid.setStyle("-fx-background-image: url(com/lhs/ui/2014-06-Military-Tank-Photos.jpg);" +
+				"    -fx-background-repeat: stretch;   \n" +
+				"    -fx-background-size: 900 506;\n" +
+				"    -fx-background-position: center center;");
 		
         Button playBtn = new Button();
         playBtn.setText("Play! (Jugar!) (Joue!)");
@@ -112,15 +115,15 @@ public class TTUI extends Application {
 	            public void handle(KeyEvent event) {
 					World fGame = getWorld();
 					Tank t1 = (Tank)fGame.actors.get(0);
-					Tank t2 = (Tank)fGame.actors.get(1);
+				Tank t2 = (Tank)fGame.actors.get(1);
 					switch (event.getCode()) {
 	                case UP:	t1.move(2);	fGame.actors.set(0,t1); System.out.println("up"); break;
-	                case DOWN:   t1.move(-2);	fGame.actors.set(0,t1); break;
+						case DOWN:   t1.move(-2);	fGame.actors.set(0,t1); break;
 	                case LEFT:   t1.direction-=3;	fGame.actors.set(0,t1); break;
-	                case RIGHT:  t1.direction+=3;	fGame.actors.set(0,t1); break;
-	                case E: t2.move(2);	    fGame.actors.set(1,t2); break;
-	                case D: t2.move(-2);	fGame.actors.set(1,t2); break;
-	                case S: t2.direction-=3;	fGame.actors.set(1,t2); break;
+						case RIGHT:  t1.direction+=3;	fGame.actors.set(0,t1); break;
+						case E: t2.move(2);	    fGame.actors.set(1,t2); break;
+						case D: t2.move(-2);	fGame.actors.set(1,t2); break;
+						case S: t2.direction-=3;	fGame.actors.set(1,t2); break;
 	                case F: t2.direction+=3;	fGame.actors.set(1,t2); break;
 	                default: break;
 				}
@@ -160,7 +163,8 @@ public class TTUI extends Application {
 	public ImageView draw(Actor a) {
 		ImageView view = new ImageView();
 		Image image;
-		if (a instanceof Tank) { Tank t = (Tank)a; view.setImage(t.image); image = t.image; view.setX(t.x-(image.getWidth()/2)); view.setY(t.y-(image.getHeight()/2)); }
+		if (a instanceof Tank) {
+			Tank t = (Tank)a; view.setImage(t.image); image = t.image; view.setX(t.x-(image.getWidth()/2)); view.setY(t.y-(image.getHeight()/2)); }
 		else if (a instanceof Projectile) { /*TODO: make projectile gray square*/ }
 		view.setRotate(a.direction);
 		return view;
