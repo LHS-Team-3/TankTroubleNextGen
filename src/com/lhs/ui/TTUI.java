@@ -23,6 +23,8 @@ import com.lhs.game.World;
 
 public class TTUI extends Application {
 	
+	public World game;
+	
 	public static void main(String[] args) {
 		
 		launch(args);
@@ -84,9 +86,9 @@ public class TTUI extends Application {
 		Group root = new Group();
 		Scene scene = new Scene(root,500,500,Color.WHITE);
 		
-		World game = new World(8,8);
-		final World fGame = game;
-		for (int i = 0; i<500; i++) {
+		game = new World(8,8);
+		//final World fGame = game;
+		for (int i = 0; i<1; i++) {
 			game.tick();
 			//try {Thread.sleep(1000); } catch (Exception e) { e.printStackTrace(); }
 		}
@@ -94,6 +96,7 @@ public class TTUI extends Application {
 		EventHandler<KeyEvent> keyPress  = new EventHandler<KeyEvent>() {
 			@Override
 	            public void handle(KeyEvent event) {
+					World fGame = getWorld();
 					Tank t1 = (Tank)fGame.actors.get(0);
 					Tank t2 = (Tank)fGame.actors.get(1);
 					switch (event.getCode()) {
@@ -126,4 +129,7 @@ public class TTUI extends Application {
 		primaryStage.show();
 		scene.setOnKeyPressed(keyPress);
 	}
+	
+	public final World getWorld() {	return game; }
+	
 }

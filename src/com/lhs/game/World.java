@@ -39,7 +39,7 @@ public class World {
 			}
 		}
 		
-		for (int i = 0; i<actors.size(); i++) { Actor a = actors.get(i); a.move(1); actors.add(i, a); }
+		for (int i = 0; i<actors.size(); i++) { Actor a = actors.get(i); actors.set(i, a); }
 		
 	}
 	
