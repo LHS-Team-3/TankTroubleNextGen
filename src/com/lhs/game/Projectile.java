@@ -1,5 +1,7 @@
 package com.lhs.game;
 
+import javafx.scene.image.Image;
+
 public class Projectile extends Actor {
 	
 	public double x;
@@ -9,12 +11,19 @@ public class Projectile extends Actor {
 	public String name;
 	public Bullet type;
 	public int direction;
+	public Image image;
+	public int life;
 	
 	public Projectile(String name, double x, double y) {
 		
 		this.name = name;
 		this.x = x;
 		this.y = y;
+		this.w = 10;
+		this.h = 10;
+		this.image = new Image("/com/lhs/resource/bullet.png");
+		this.type = new Bullet();
+		this.life = 0;
 		
 	}
 	
@@ -43,7 +52,8 @@ public class Projectile extends Actor {
 	
 	public void tick() {
 		
-		move(1);
+		move(type.speed);
+		//if (life==1000) this.
 		
 	}
 	

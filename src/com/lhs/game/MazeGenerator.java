@@ -25,25 +25,25 @@ public class MazeGenerator {
             for (int j = 0; j < x; j++) {        
                 System.out.print((maze[j][i] & 1) == 0 ? "+---" : "+   ");
                 //PSEUDO if (maze[j][i] & 1 == 0) add a wall at the top
-                if ((maze[j][i] & 1) == 0 && true) walls.add(new Wall(j*4,i*4,4,1));
+                if ((maze[j][i] & 1) == 0 && true) walls.add(new Wall(j*60,i*60,60,1));
             }
             System.out.println("+");
             // draw the west edge
             for (int j = 0; j < x; j++) {
                 System.out.print((maze[j][i] & 8) == 0 ? "|   " : "    ");
-                if (((maze[j][i] & 8) == 0) && Math.random()>0.1) walls.add(new Wall(j*4,i*4,1,4));
+                if (((maze[j][i] & 8) == 0) && Math.random()>0.1) walls.add(new Wall(j*60,i*60,1,60));
             }
             System.out.println("|"); //PSEUDO add a wall at the left
-            walls.add(new Wall(0,i*4,1,4));
+            walls.add(new Wall(0,i*60,1,60));
         }
         // draw the bottom line
         for (int j = 0; j < x; j++) {
             System.out.print("+---");
             //PSEUDO fill the bottom with walls
-            walls.add(new Wall(j*4, (y*4), 4, 1));
+            walls.add(new Wall(j*60, (y*60), 60, 1));
         }
         for (int i = 0; i < y; i++) {
-        	walls.add(new Wall(x*4, i*4, 1, 4));
+        	walls.add(new Wall(x*60, i*60, 1, 60));
         }
         System.out.println("+");
     }

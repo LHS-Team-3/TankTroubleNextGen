@@ -13,7 +13,7 @@ public class Wall {
 	
 	public Wall(int x, int y, double w, double h) {
 		
-		bounds = new Rectangle2D.Double((double)x,(double)y,w,h);
+		bounds = new Rectangle2D.Double((double)x*1,(double)y*1,w*1,h*1);
 		this.x = x;
 		this.y = y;
 		this.w = w;
@@ -27,9 +27,9 @@ public class Wall {
 		int out = bounds.outcode(x,y);
 		
 		if (out==Rectangle2D.OUT_LEFT) ans = 360-d;
-		if (out==Rectangle2D.OUT_BOTTOM) ans = 180-d;
-		if (out==Rectangle2D.OUT_RIGHT) ans = 360-d;
-		if (out==Rectangle2D.OUT_TOP) ans = 180-d;
+		if (out==Rectangle2D.OUT_BOTTOM) ans = d+90;
+		if (out==Rectangle2D.OUT_RIGHT) ans = 360+d;
+		if (out==Rectangle2D.OUT_TOP) ans = 360-d;
 		 
 		return ans;
 		

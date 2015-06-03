@@ -35,9 +35,9 @@ public class World {
 			for (int j = 0; j<actors.size(); j++) {
 				if (actors.get(j) instanceof Projectile) {
 					Projectile p = (Projectile)actors.get(j);
-					if (w.intersects(p.x,p.y,p.w,p.h)) p.direction = w.getRebound(p.x, p.y, p.direction);
+					if (w.intersects(p.x/1,p.y/1,p.w/1,p.h/1)) { p.direction = w.getRebound(p.x, p.y, p.direction); }
 					p.tick();
-					actors.add(j, p);
+					actors.set(j, p);
 				}
 			}
 		}

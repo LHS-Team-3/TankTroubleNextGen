@@ -1,8 +1,11 @@
 package com.lhs.ui;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -123,11 +126,13 @@ public class TTUI extends Application {
 					Tank t1 = (Tank)fGame.actors.get(0);
 					Tank t2 = (Tank)fGame.actors.get(1);
 					KeyCode e = event.getCode();
+					//System.out.println(e.toString());
 					
-	                if (e==KeyCode.UP) {	t1.move(2);	fGame.actors.set(0,t1); System.out.println("up"); }
+	                if (e==KeyCode.UP) {	t1.move(2);	fGame.actors.set(0,t1); }
 	                if (e==KeyCode.DOWN) {   t1.move(-2);	fGame.actors.set(0,t1); }
 	                if (e==KeyCode.LEFT) {   t1.direction-=3;	fGame.actors.set(0,t1); }
 	                if (e==KeyCode.RIGHT) {  t1.direction+=3;	fGame.actors.set(0,t1); }
+	                if (e==KeyCode.M) { fGame.actors.add(t1.fire()); }
 	                if (e==KeyCode.E) { t2.move(2);	    fGame.actors.set(1,t2); }
 	                if (e==KeyCode.D) { t2.move(-2);	fGame.actors.set(1,t2); }
 	                if (e==KeyCode.S) { t2.direction-=3;	fGame.actors.set(1,t2); }
@@ -142,10 +147,10 @@ public class TTUI extends Application {
 		for (int i = 0; i<walls.size(); i++) {
 			Wall w = walls.get(i);
 			Rectangle r = new Rectangle();
-			r.setX(w.x* 15);
-			r.setY(w.y*15);
-			r.setHeight(w.h*15);
-			r.setWidth(w.w*15);
+			r.setX(w.x* 1);
+			r.setY(w.y*1);
+			r.setHeight(w.h*1);
+			r.setWidth(w.w*1);
 			r.setFill(Color.BLUE);
 			root.getChildren().addAll(r);
 		}
@@ -156,10 +161,25 @@ public class TTUI extends Application {
 		primaryStage.show();
 		primaryStage.sizeToScene();
 		scene.setOnKeyPressed(keyPress);
+		
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				getWorld().tick();
+				//System.out.println("time");
+				Platform.runLater(new Runnable() {
+		            public void run() {
+		                redraw();
+		            }
+		        });
+			}
+		};
+		Timer t = new Timer(); t.schedule(task, 1, 1000/60);
+		
 	}
 	
 	public void redraw() {
-		for (int i = 0; i<root.getChildren().size(); i++) if (root.getChildren().get(i) instanceof Pane) { root.getChildren().remove(i); System.out.println("remove"); }
+		for (int i = 0; i<root.getChildren().size(); i++) if (root.getChildren().get(i) instanceof Pane) { root.getChildren().remove(i); }
 		root.getChildren().add(drawWorld());
 	}
 	
@@ -176,7 +196,7 @@ public class TTUI extends Application {
 		ImageView view = new ImageView();
 		Image image;
 		if (a instanceof Tank) { Tank t = (Tank)a; view.setImage(t.image); image = t.image; view.setX(t.x-(image.getWidth()/2)); view.setY(t.y-(image.getHeight()/2)); view.setRotate(t.direction); }
-		else if (a instanceof Projectile) { /*TODO: make projectile gray square*/ }
+		else if (a instanceof Projectile) { Projectile p = (Projectile)a; view.setImage(p.image); image = p.image; view.setX(p.x-(image.getWidth()/2)); view.setY(p.y-(image.getHeight()/2)); view.setRotate(p.direction); }
 		//view.setRotate(a.direction);
 		return view;
 	}

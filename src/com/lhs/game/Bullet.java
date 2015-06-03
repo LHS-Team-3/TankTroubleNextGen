@@ -7,4 +7,9 @@ public class Bullet {
 	public double speed;
 	public int damage;
 	
+	public Bullet() {
+		this.speed = 0.01;
+		this.damage = 1;
+	}
+	
 }
