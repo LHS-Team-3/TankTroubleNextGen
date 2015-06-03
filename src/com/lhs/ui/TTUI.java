@@ -46,7 +46,7 @@ public class TTUI extends Application {
 		grid.setHgap(10);
 		grid.setVgap(10);
 		grid.setPadding(new Insets(25,25,25,25));
-		grid.setStyle("-fx-background-image: url('http://duke.kenai.com/wave/Wave.jpg')");
+		grid.setStyle("-fx-background-color: #000");
 		
         Button playBtn = new Button();
         playBtn.setText("Play! (Jugar!) (Joue!)");
