@@ -48,7 +48,7 @@ public class TTUI extends Application {
 		grid.setPadding(new Insets(25,25,25,25)); //comment
 		
         Button playBtn = new Button();
-        playBtn.setText("Play!(Jugar!)");
+        playBtn.setText("Play! (Jugar!) (Joue!)");
         final Stage newStage = primaryStage;
         playBtn.setOnAction(new EventHandler<ActionEvent>() {
  
@@ -69,7 +69,7 @@ public class TTUI extends Application {
         grid.add(playBtn,0,0);
         
         Button quitBtn = new Button();
-        quitBtn.setText("Quit (dejar)");
+        quitBtn.setText("Quit (dejar) (arreter)");
         quitBtn.setOnAction(new EventHandler<ActionEvent>() {
         	@Override
         	public void handle(ActionEvent event) {
