@@ -149,7 +149,7 @@ public class TTUI extends Application {
 	
 	public ImageView draw(Actor a) {
 		ImageView view = new ImageView();
-		if (a instanceof Tank) { Tank t = (Tank)a; view.setImage(t.image); }
+		if (a instanceof Tank) { Tank t = (Tank)a; view.setImage(t.image); System.out.println(t.image.getHeight()); }
 		view.setRotate(a.direction);
 		return view;
 	}
